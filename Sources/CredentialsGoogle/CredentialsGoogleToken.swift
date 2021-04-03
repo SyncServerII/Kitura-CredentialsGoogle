@@ -130,15 +130,18 @@ public class CredentialsGoogleToken: CredentialsPluginProtocol {
                             Log.error("Failed to read Google response")
                         }
                     }
+                    Log.error("Google response: \(String(describing: response)); statusCode: \(String(describing: response?.statusCode))")
                     onFailure(nil, nil)
                 }
                 req.end()
             }
             else {
+                Log.error("Google: No access_token")
                 onFailure(nil, nil)
             }
         }
         else {
+            Log.info("Google: No token type")
             onPass(nil, nil)
         }
     }
